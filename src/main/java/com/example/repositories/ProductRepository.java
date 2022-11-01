@@ -2,11 +2,10 @@ package com.example.repositories;
 
 import com.example.models.Product;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
-public interface ProductRepository extends MongoRepository<Product, String>
+public interface ProductRepository
 {
-
+    public List<Product> findAll();
+    public List<Product> findByName(String name);
 }

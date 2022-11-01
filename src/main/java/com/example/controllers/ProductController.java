@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
-@RequestMapping(path = "your-spotter/products")
+@RequestMapping
 @RestController
 public class ProductController
 {
@@ -21,18 +20,18 @@ public class ProductController
     {
         this.productService = productService;
     }
-//    @GetMapping("/your-spotter/products")
-    @GetMapping
+
+    @GetMapping(path = "search")
     public List<Product> getAll()
     {
         return productService.getAll();
     }
 
-//    @GetMapping(path = "id/{id}")
-//    public Optional<Product> getBy(@PathVariable("id") String id)
-//    {
-//        return productService.getBy(id);
-//    }
+    @GetMapping(path = "search={name}")
+    public List<Product> getByName(@PathVariable("name") String name)
+    {
+        return productService.getByName(name);
+    }
 
     private final ProductService productService;
 }
