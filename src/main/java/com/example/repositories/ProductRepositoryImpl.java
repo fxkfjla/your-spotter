@@ -28,7 +28,6 @@ public class ProductRepositoryImpl implements ProductRepository
     public List<Product> findByName(String name)
     {
         Query query = new Query();
-        // query.addCriteria(Criteria.where("name").is(name));
         query.addCriteria(Criteria.where("name").regex(name, "imx"));
         List<Product> products = mongoTemplate.find(query, Product.class);
 
