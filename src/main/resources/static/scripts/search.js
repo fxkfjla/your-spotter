@@ -33,7 +33,7 @@ searchInput.addEventListener("keyup", input =>
 
         return { name: product.name, amount: product.amount, price: product.price, element: template } 
       })
+      console.log(products)
     })
-    console.log(products)
   }
 })
