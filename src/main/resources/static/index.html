@@ -7,6 +7,16 @@
 
     <link rel = "stylesheet" href = "styles/index.css">
 
+    <template product-template>
+      <div class = "product">
+        <div class = "product-name" product-name></div>
+        <div class = "product-amount" product-amount></div>
+        <div class = "product-price" product-price></div>
+      </div>
+    </template>
+
+    <script src = "scripts/search.js" defer></script>
+
   </head>
 
   <body>
@@ -20,7 +30,7 @@
         </div>
 
         <div class = "search">
-          <input class = "search-bar" type = "text" placeholder = "search...">
+          <input class = "search-bar" type = "text" placeholder = "search..." product-search>
         </div>
 
         <div class = "login">
@@ -56,6 +66,8 @@
           </div>
 
         </div>
+
+        <div products-container></div>
 
       </div>
 
