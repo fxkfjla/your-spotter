@@ -20,6 +20,7 @@ form.addEventListener('keypress', input =>
       {
         counter = localStorage.getItem('counter')
 
+        // localStorage.setItem('image ' + counter, product.image)
         localStorage.setItem('name ' + counter, product.name)
         localStorage.setItem('amount ' + counter, product.amount)
         localStorage.setItem('price ' + counter, product.price)
