@@ -63,6 +63,7 @@
   justify-content: center;
   text-align: center;
   align-self: center;
+  border-radius: 2.5%; 
 }
 .product-category:hover
 {
