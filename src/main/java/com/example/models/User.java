@@ -25,9 +25,6 @@ public class User implements UserDetails
 {
     public User(String email, String password, UserRole role)
     {
-        this.id = idCounter;
-        ++idCounter;
-
         this.email = email;
         this.password = password;
         this.role = role;
@@ -77,8 +74,6 @@ public class User implements UserDetails
 
     @Id
     private Long id;
-    @Transient
-    private static Long idCounter = 0L;
     @Field
     private String email;
     @Field
