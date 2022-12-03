@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository
         Query query = new Query();
         query.addCriteria(Criteria.where("email").regex(email));
 
-        return Optional.of(mongoTemplate.findOne(query, User.class));
+        return Optional.ofNullable(mongoTemplate.findOne(query, User.class));
     }
 
     @Override

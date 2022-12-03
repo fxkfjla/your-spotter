@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService implements UserDetailsService
 {
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException
     {
@@ -27,20 +26,16 @@ public class UserService implements UserDetailsService
 
     public String signUpUser(User user)
     {
-        // TODO: Fix nullpointer exception
-        // boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
 
-        // if(userExists)
-        // {
-        //     // TODO: Handle exception
-        // }
+        if(userExists)
+        {
+            // TODO: Handle exception
+            return "email already taken";
+        }
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-
-        // TODO: Autogenerate id
-
-        user.setId(2L);
 
         userRepository.save(user);
 
