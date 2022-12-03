@@ -1,5 +1,6 @@
 package com.example.services;
 
+import com.example.controllers.UserController;
 import com.example.models.RegistrationRequest;
 import com.example.models.UserRole;
 import com.example.models.User;
@@ -21,12 +22,12 @@ public class RegistrationService
             // TODO: Handle exception
         }
 
-        return userService.signUpUser
+        return userController.signUpUser
         (
             new User(request.getEmail(), request.getPassword(), UserRole.USER)
         );
     }   
 
     private final EmailValidator emailValidator;
-    private final UserService userService;
+    private final UserController userController;
 }
