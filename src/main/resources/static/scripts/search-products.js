@@ -12,7 +12,7 @@ form.addEventListener('keypress', input =>
 
     const value = input.target.value.toLowerCase()
 
-    fetch("/search=" + value)
+    fetch("products/search?name=" + value)
     .then(res => res.json())
     .then(data =>
     {

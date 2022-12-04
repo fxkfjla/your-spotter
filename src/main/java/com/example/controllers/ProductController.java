@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @CrossOrigin
-@RequestMapping
+@RequestMapping("/products")
 @RestController
 public class ProductController
 {
@@ -23,14 +24,15 @@ public class ProductController
         this.productService = productService;
     }
 
-    @GetMapping(path = "search")
+    @GetMapping(path = "all")
     public List<Product> getAll()
     {
         return productService.getAll();
     }
 
-    @GetMapping(path = "search={name}")
-    public List<Product> getByName(@PathVariable("name") String name)
+    // requestparam
+    @GetMapping(path = "search")
+    public List<Product> getByName(@RequestParam("name") String name)
     {
         return productService.getByName(name);
     }
