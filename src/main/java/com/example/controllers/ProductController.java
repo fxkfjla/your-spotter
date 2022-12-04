@@ -29,7 +29,6 @@ public class ProductController
         return productService.getAll();
     }
 
-    // requestparam
     @GetMapping(path = "search")
     public List<Product> getByName(@RequestParam("name") String name)
     {
