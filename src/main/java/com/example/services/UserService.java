@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.controllers.ConfirmationTokenController;
 import com.example.models.ConfirmationToken;
 import com.example.models.User;
 import com.example.repositories.UserRepository;
@@ -45,18 +44,22 @@ public class UserService implements UserDetailsService
 
         userRepository.save(user);
 
-        // TODO: Send confirmation token
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), user);
-        confirmationTokenController.save(confirmationToken);
+        tokenService.save(confirmationToken);
 
         // TODO: Send email
 
         return token;
     }
 
+    public void enableUser(String email)
+    {
+        userRepository.enableUser(email);
+    }
+
     private final UserRepository userRepository;
-    private final ConfirmationTokenController confirmationTokenController;
+    private final ConfirmationTokenService tokenService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 }
