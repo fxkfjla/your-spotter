@@ -42,7 +42,7 @@ public class UserRepositoryImpl implements UserRepository
         Query query = new Query().limit(1).with(Sort.by(Sort.Direction.DESC, "id"));
         Optional<User> user = Optional.ofNullable(mongoTemplate.findOne(query, User.class));
 
-        return user.isPresent() ? user.get().getId() : 0L;
+        return user.isPresent() ? user.get().getId() : -1L;
     }
 
     @Override
