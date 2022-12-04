@@ -1,15 +1,20 @@
 package com.example.services;
 
-import com.example.models.User;
-import com.example.repositories.UserRepository;
-
-import lombok.AllArgsConstructor;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.example.controllers.ConfirmationTokenController;
+import com.example.models.ConfirmationToken;
+import com.example.models.User;
+import com.example.repositories.UserRepository;
+
+import lombok.AllArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -41,11 +46,17 @@ public class UserService implements UserDetailsService
         userRepository.save(user);
 
         // TODO: Send confirmation token
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), user);
+        confirmationTokenController.save(confirmationToken);
 
-        return "it works";
+        // TODO: Send email
+
+        return token;
     }
 
     private final UserRepository userRepository;
+    private final ConfirmationTokenController confirmationTokenController;
     private final BCryptPasswordEncoder passwordEncoder;
     private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 }
