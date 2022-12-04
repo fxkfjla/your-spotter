@@ -81,7 +81,7 @@ public class User implements UserDetails
     @Field
     private UserRole role;
     @Field
-    private Boolean locked;
+    private Boolean locked = false;
     @Field
-    private Boolean enabled;
+    private Boolean enabled = false;
 }
