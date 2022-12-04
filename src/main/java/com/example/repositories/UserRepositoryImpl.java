@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,6 +37,17 @@ public class UserRepositoryImpl implements UserRepository
         return Optional.ofNullable(mongoTemplate.findOne(query, User.class));
     }
     
+    public void enableUser(String email)
+    {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").regex(email));
+
+        Update update = new Update().set("enabled", true);
+
+        mongoTemplate.updateFirst(query, update, User.class);
+
+    }
+
     @Override
     public Long maxId()
     {

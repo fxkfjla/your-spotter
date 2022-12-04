@@ -9,6 +9,7 @@ public interface UserRepository
 {
     public List<User> findAll();
     public Optional<User> findByEmail(String email);
+    public void enableUser(String email);
     public Long maxId();
     public void save(User user);
 }
