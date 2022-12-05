@@ -34,8 +34,7 @@ public class UserService implements UserDetailsService
 
         if(userExists)
         {
-            // TODO: Handle exception
-            return "email already taken";
+            return "confirmation email resent";
         }
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -47,8 +46,6 @@ public class UserService implements UserDetailsService
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), user);
         tokenService.save(confirmationToken);
-
-        // TODO: Send email
 
         return token;
     }
