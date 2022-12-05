@@ -1,6 +1,7 @@
 package com.example.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -22,6 +23,7 @@ public class ConfirmationToken
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
         this.user = user;
+        this.userId = user.getId();
     }
 
     @Id
@@ -34,6 +36,8 @@ public class ConfirmationToken
     private LocalDateTime expiresAt;
     @Field
     private LocalDateTime confirmedAt;
-    @Field
+    @Transient
     private User user;
+    @Field
+    private int userId;
 }
