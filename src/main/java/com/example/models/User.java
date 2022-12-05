@@ -70,7 +70,7 @@ public class User implements UserDetails
     }
 
     @Id
-    private Long id;
+    private int id;
     @Field
     private String email;
     @Field

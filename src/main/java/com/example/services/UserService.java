@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        user.setId(userRepository.maxId() + 1L);
+        user.setId(userRepository.maxId() + 1);
 
         userRepository.save(user);
 
@@ -53,9 +53,9 @@ public class UserService implements UserDetailsService
         return token;
     }
 
-    public void enableUser(String email)
+    public void enableUser(int id)
     {
-        userRepository.enableUser(email);
+        userRepository.enableUser(id);
     }
 
     private final UserRepository userRepository;

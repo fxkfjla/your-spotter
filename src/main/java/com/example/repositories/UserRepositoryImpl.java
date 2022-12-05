@@ -36,25 +36,23 @@ public class UserRepositoryImpl implements UserRepository
 
         return Optional.ofNullable(mongoTemplate.findOne(query, User.class));
     }
-    
-    public void enableUser(String email)
-    {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("email").regex(email));
 
+    @Override
+    public void enableUser(int id)
+    {
+        Query query = new Query().addCriteria(Criteria.where("_id").is(id));
         Update update = new Update().set("enabled", true);
 
         mongoTemplate.updateFirst(query, update, User.class);
-
     }
 
     @Override
-    public Long maxId()
+    public int maxId()
     {
         Query query = new Query().limit(1).with(Sort.by(Sort.Direction.DESC, "id"));
         Optional<User> user = Optional.ofNullable(mongoTemplate.findOne(query, User.class));
 
-        return user.isPresent() ? user.get().getId() : -1L;
+        return user.isPresent() ? user.get().getId() : -1;
     }
 
     @Override
