@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -32,9 +31,9 @@ public class ConfirmationTokenService
         return confirmationToken.get();
     }
 
-    public void setConfirmedAt(ConfirmationToken token)
+    public void confirmToken(ConfirmationToken token)
     {
-        token.setConfirmedAt(LocalDateTime.now());
+        repository.confirmToken(token);
     }
 
     private final ConfirmationTokenRepository repository;

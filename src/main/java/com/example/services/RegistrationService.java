@@ -53,8 +53,8 @@ public class RegistrationService
             return "token expired";
         }
 
-        tokenService.setConfirmedAt(confirmationToken);
-        userService.enableUser(confirmationToken.getUser().getEmail());
+        tokenService.confirmToken(confirmationToken);
+        userService.enableUser(confirmationToken.getUserId());
 
         return "confirmed";
     }
