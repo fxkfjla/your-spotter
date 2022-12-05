@@ -15,7 +15,7 @@ public class ConfirmationTokenService
 {
     public void save(ConfirmationToken token)
     {
-        token.setId(repository.maxId() + 1L);
+        token.setId(repository.maxId() + 1);
         repository.save(token);
     }
 

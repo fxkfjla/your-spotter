@@ -24,7 +24,7 @@ public class Product
     }
 
     @Id
-    private String id;
+    private int id;
     @Field
     private String name;
     @Field

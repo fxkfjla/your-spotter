@@ -37,12 +37,12 @@ public class ConfirmationTokenRepositoryImpl implements ConfirmationTokenReposit
     }
 
     @Override
-    public Long maxId()
+    public int maxId()
     {
         Query query = new Query().limit(1).with(Sort.by(Sort.Direction.DESC, "id"));
         Optional<ConfirmationToken> token = Optional.ofNullable(mongoTemplate.findOne(query, ConfirmationToken.class));
 
-        return token.isPresent() ? token.get().getId() : -1L;
+        return token.isPresent() ? token.get().getId() : -1;
     }
 
     @Override

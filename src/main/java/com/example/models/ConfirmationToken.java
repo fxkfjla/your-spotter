@@ -27,7 +27,7 @@ public class ConfirmationToken
     }
 
     @Id
-    private Long id;
+    private int id;
     @Field
     private String token;
     @Field
