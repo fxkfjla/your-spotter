@@ -25,15 +25,18 @@ public class RegistrationService
             // TODO: Handle exception
         }
 
-        String token = userService.signUpUser
-        (
-            new User(request.getEmail(), request.getPassword(), UserRole.USER)
-        );
-        
-        String link = "http://localhost:8080/registration/confirm?token=" + token;
-        emailService.send(request.getEmail(), buildEmail(request.getEmail(), link));
+        User user = new User(request.getEmail(), request.getPassword(), UserRole.USER);
+        String token = userService.signUpUser(user);
 
-        return token;
+        if(!user.isEnabled())
+        {
+            String link = "http://localhost:8080/registration/confirm?token=" + token;
+            emailService.send(request.getEmail(), buildEmail(request.getEmail(), link));
+
+            return token;
+        }
+
+        return "user already registered";
     }   
 
     @Transactional

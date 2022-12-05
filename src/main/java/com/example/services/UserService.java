@@ -13,6 +13,7 @@ import com.example.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -30,10 +31,12 @@ public class UserService implements UserDetailsService
 
     public String signUpUser(User user)
     {
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+        Optional<User> foundUser = userRepository.findByEmail(user.getEmail());
 
-        if(userExists)
+        if(foundUser.isPresent())
         {
+            user.setEnabled(foundUser.get().getEnabled());
+            user.setLocked(foundUser.get().getLocked());
             return "confirmation email resent";
         }
 
