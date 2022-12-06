@@ -13,6 +13,7 @@ import com.example.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,6 +21,39 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserService implements UserDetailsService
 {
+    public List<User> getAll()
+    {
+        return userRepository.findAll();
+    }
+
+    public User getByEmail(String email)
+    {
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(!user.isPresent())
+        {
+            // TODO: Handle exception
+            throw new IllegalStateException("user not found");
+        }
+
+        return user.get();
+    }
+
+    public boolean compare(String email, String password)
+    {
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(!user.isPresent())
+        {
+            // TODO: Handle exception
+            throw new IllegalStateException("user not found");
+        }
+
+        String hashedPassword = user.get().getPassword();
+
+        return passwordEncoder.matches(password, hashedPassword);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException
     {
