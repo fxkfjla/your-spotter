@@ -1,21 +1,26 @@
 const productTemplate = document.querySelector("[product-template]");
 const productsContainer = document.querySelector("[products-container]")
 
-counter = localStorage.getItem("counter")
+const value = localStorage.getItem('search')
 
-for(let i = 0; i < counter; i++)
+fetch("/products/search?name=" + value)
+.then(res => res.json())
+.then(data =>
 {
-    const template = productTemplate.content.cloneNode(true).children[0];
+    data.forEach(product =>
+    {
+        const template = productTemplate.content.cloneNode(true).children[0];
 
-    const image = template.querySelector("[product-image]")
-    const name = template.querySelector("[product-name]")
-    const amount = template.querySelector("[product-amount]")
-    const price = template.querySelector("[product-price]")
+        const image = template.querySelector("[product-image]")
+        const name = template.querySelector("[product-name]")
+        const amount = template.querySelector("[product-amount]")
+        const price = template.querySelector("[product-price]")
 
-    // image.textContent = localStorage.getItem("image" + i)
-    name.textContent = localStorage.getItem("name " + i)
-    // amount.textContent = localStorage.getItem("amount " + i)
-    price.textContent = localStorage.getItem("price " + i) + " PLN"
+        // image.textContent = product.image
+        name.textContent = product.name
+        // amount.textContent = product.amount
+        price.textContent = product.price + " PLN"
 
-    productsContainer.append(template)
-}
+        productsContainer.append(template)
+    }); 
+})
