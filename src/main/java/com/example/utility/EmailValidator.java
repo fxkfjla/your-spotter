@@ -1,4 +1,4 @@
-package com.example.services;
+package com.example.utility;
 
 import java.util.function.Predicate;
 

@@ -1,7 +1,7 @@
 package com.example.controllers;
 
-import com.example.models.RegistrationRequest;
 import com.example.services.RegistrationService;
+import com.example.utility.RegistrationRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.models.ConfirmationToken;
-import com.example.models.RegistrationRequest;
 import com.example.models.User;
-import com.example.models.UserRole;
+import com.example.utility.EmailValidator;
+import com.example.utility.RegistrationRequest;
+import com.example.utility.UserRole;
 
 import lombok.AllArgsConstructor;
 
