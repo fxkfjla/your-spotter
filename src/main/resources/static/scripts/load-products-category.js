@@ -1,7 +1,9 @@
-const productTemplate = document.querySelector("[product-template]");
-const productsContainer = document.querySelector("[products-container]")
+var productTemplate = document.querySelector("[product-template]");
+var productsContainer = document.querySelector("[products-container]")
 
-fetch("/products/categoryName?name=Creatine")
+var value = localStorage.getItem('category')
+
+fetch("/products/categoryName?name=" + value)
 .then(res => res.json())
 .then(data =>
 {
