@@ -8,9 +8,11 @@ fetch("products/categories/all")
     data.forEach(category =>
     {
         const template = categoryTemplate.content.cloneNode(true).children[0];
+
         const image = template.querySelector("[category-image]")
         const name = template.querySelector("[category-name]")
 
+        template.href = "categories/" + category.name + ".html"
         name.textContent = category.name
         // image.textContent = category.image
 

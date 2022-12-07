@@ -48,6 +48,11 @@
   grid-auto-rows: 1fr;
   gap: 10px;
 }
+.category-href
+{
+  color: black;
+  text-decoration: none;
+}
 .category
 {
   margin: auto;
