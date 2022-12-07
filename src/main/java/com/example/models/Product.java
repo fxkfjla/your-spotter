@@ -1,6 +1,7 @@
 package com.example.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -16,11 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product
 {
-    public Product(String name, Integer amount, Float price)
+    public Product(String name, Integer amount, Float price, ProductCategory category)
     {
         this.name = name;
         this.amount = amount;
         this.price = price;
+        this.category = category;
     }
 
     @Id
@@ -31,4 +33,7 @@ public class Product
     private Integer amount;
     @Field
     private Float price;
+    @Field
+    @DBRef
+    private ProductCategory category;
 }
