@@ -13,15 +13,18 @@ form.addEventListener('click', input =>
     {
         if(data.email == email)
         {
-            fetch("users/lookup/compare?email=" + email + "&password=" + password)
-            .then(response => response.text())
-            .then(isValid => 
+            if(data.enabled)
             {
-                if(isValid)
+                fetch("users/lookup/compare?email=" + email + "&password=" + password)
+                .then(response => response.text())
+                .then(isValid => 
                 {
-                    location.href = "index.html"
-                }
-            })
+                    if(JSON.parse(isValid)) 
+                    {
+                        location.href = "/index.html"
+                    }
+                })
+            }
         }
     })
 })
