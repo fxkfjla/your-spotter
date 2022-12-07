@@ -1,6 +1,7 @@
 package com.example.repositories;
 
 import com.example.models.Product;
+import com.example.models.ProductCategory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -33,6 +34,24 @@ public class ProductRepositoryImpl implements ProductRepository
         Query query = new Query().addCriteria(Criteria.where("name").regex(name, "imx"));
 
         return mongoTemplate.find(query, Product.class);
+    }
+
+    @Override
+    public List<Product> findByCategoryId(Integer id)
+    {
+        Criteria.where("category");
+        Query query = new Query().addCriteria(Criteria.where("category.$id").is(id));
+
+        return mongoTemplate.find(query, Product.class);
+    }
+
+    @Override
+    public List<Product> findByCategoryName(String name)
+    {
+        Query query = new Query().addCriteria(Criteria.where("name").regex(name));
+        ProductCategory category = mongoTemplate.findOne(query, ProductCategory.class);
+
+        return findByCategoryId(category.getId());
     }
 
     @Override

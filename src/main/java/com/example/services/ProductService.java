@@ -27,6 +27,16 @@ public class ProductService
         return productRepository.findByName(name);
     }
 
+    public List<Product> getByCategoryId(Integer id)
+    {
+        return productRepository.findByCategoryId(id);
+    }
+
+    public List<Product> getByCategoryName(String name)
+    {
+        return productRepository.findByCategoryName(name);
+    }
+
     public void addProduct(Product product)
     {
         product.setId(productRepository.maxId() + 1);

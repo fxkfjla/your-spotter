@@ -38,6 +38,18 @@ public class ProductController
         return productService.getByName(name);
     }
 
+    @GetMapping(path = "categoryId")
+    public List<Product> getByCategoryId(@RequestParam("id") Integer id)
+    {
+        return productService.getByCategoryId(id);
+    }
+
+    @GetMapping(path = "categoryName")
+    public List<Product> getByCategoryName(@RequestParam("name") String name)
+    {
+        return productService.getByCategoryName(name);
+    }
+
     @ResponseBody
     @PostMapping(path = "addOne")
     public void addProduct(@RequestBody Product product)
