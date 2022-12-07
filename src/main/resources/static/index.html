@@ -6,9 +6,17 @@
 
     <link rel = "stylesheet" href = "styles/page-layout.css">
     <link rel = "stylesheet" href = "styles/index.css">
+
+    <template category-template>
+      <div class = "category">
+        <div class = "category-image" category-image></div>
+        <div class = "category-name" category-name></div>
+      </div>
+    </template>
   
     <script src = "https://code.jquery.com/jquery-1.7.1.min.js" defer></script>
     <script src = "scripts/load-header.js" defer></script>
+    <script src = "scripts/load-categories.js" defer></script>
   </head>
 
   <body>
@@ -16,7 +24,6 @@
       <div data-include = "header"></div>
 
       <div class = "content">
-
         <div class = "johnson-showcase">
           <iframe class = "okipullup" src="https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -24,14 +31,10 @@
         <div class = "categories">
           <h2 class = categories-paragraph>CATEGORIES</h2>
 
-          <div class = "categories-grid">
-            <div class = "product-category">
-              <p class = "product-text">Whey</p>
-            </div>
-          </div>
+          <div class = "categories-grid" categories-container></div>
         </div>
-
       </div>
+
     </div>
   </body>
 </html>
