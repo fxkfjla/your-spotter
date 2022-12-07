@@ -4,30 +4,36 @@
   <head>
     <Title>Your Spotter login</Title>
 
-    <link rel="stylesheet" href="styles/login-singup.css">
+    <link rel = "stylesheet" href = "/styles/page-layout.css">
+    <link rel="stylesheet" href = "/styles/login-singup.css">
 
-    <script src = "scripts/login.js" defer></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
+    <script src = "https://code.jquery.com/jquery-1.7.1.min.js" defer></script>
+    <script src = "/scripts/load-header.js" defer></script>
+    <script src = "/scripts/login.js" defer></script>
   </head>
 
   <body>
     <div class="wrapper">
-      <h1>Login</h1>
+      <div data-include = "/header"></div>
 
-      <form action="#">
-        <input type="text" placeholder="Email" id = email>
-        <input type="text" placeholder="Password" id = password>
-        <div class="recover"><a href="#">Forgot Password?</a></div>
-      </form>
+      <div class = "content-wrapper">
+        <h1 class = "login-h1">Login</h1>
 
-      <div class = "submit">
-        <form class = "submit-button" id = "form">
-          <button>Login</button>
+        <form class = "login-details" action="#">
+          <input type="text" placeholder="Email" id = email>
+          <input type="password" placeholder="Password" id = password>
+          <div class="recover"><a href="#">Forgot Password?</a></div>
         </form>
-      </div>
 
-      <div class="member">
-        Not a member? <a href="./signup.html">Register Now</a>
+        <div class = "submit">
+          <form class = "submit-button" id = "form">
+            <button>Login</button>
+          </form>
+        </div>
+
+        <div class="member">
+          Not a member? <a href="/signup.html">Register Now</a>
+        </div>
       </div>
     </div>
   </body>

@@ -4,35 +4,42 @@
   <head>
     <Title>Your Spotter registration</Title>
 
-    <link rel="stylesheet" href="styles/login-singup.css">
+    <link rel = "stylesheet" href = "/styles/page-layout.css">
+    <link rel="stylesheet" href="/styles/login-singup.css">
 
-    <script src = "scripts/register.js" defer></script>
+    <script src = "https://code.jquery.com/jquery-1.7.1.min.js" defer></script>
+    <script src = "/scripts/register.js" defer></script>
+    <script src = "scripts/load-header.js" defer></script>
   </head>
 
   <body>
     <div class="wrapper">
-      <h1>Sign Up</h1>
+      <div data-include = "/header"></div>
 
-      <form action="#">
-        <input type="text" placeholder="Email" id = email>
-        <input type="text" placeholder="Password" id = password>
-        <input type="text" placeholder="Re-enter Password" id = re-password>
-      </form>
+      <div class = "content-wrapper">
+        <h1>Sign Up</h1>
 
-      <div class="terms">
-        <input type="checkbox" id="checkbox">
-        <label for="checkbox">I agree to these <a href="#">Terms & Conditions</a></label>
-      </div>
-
-      <div class = "submit">
-        <form class = "submit-button" id = "form">
-          <button submit-button>Sign Up</button>
+        <form class = "login-details" action="#">
+          <input type="text" placeholder="Email" id = email>
+          <input type="password" placeholder="Password" id = password>
+          <input type="password" placeholder="Re-enter Password" id = re-password>
         </form>
-      </div>
+
+        <div class="terms">
+          <input type="checkbox" id="checkbox">
+          <label for="checkbox">I agree to these <a href="#">Terms & Conditions</a></label>
+        </div>
+
+        <div class = "submit">
+          <form class = "submit-button" id = "form">
+            <button submit-button>Sign Up</button>
+          </form>
+        </div>
 
 
-      <div class="member">
-        Already a member? <a href="./login.html">Login Here</a>
+        <div class="member">
+          Already a member? <a href="/login.html">Login Here</a>
+        </div>
       </div>
     </div>
   </body>
