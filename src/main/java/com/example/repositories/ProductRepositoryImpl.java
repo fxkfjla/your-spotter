@@ -3,12 +3,14 @@ package com.example.repositories;
 import com.example.models.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository
@@ -19,19 +21,33 @@ public class ProductRepositoryImpl implements ProductRepository
         this.mongoTemplate = mongoTemplate;
     }
 
+    @Override
     public List<Product> findAll()
     {
-        List<Product> products = mongoTemplate.findAll(Product.class);
-        return products;
+        return mongoTemplate.findAll(Product.class);
     }
 
+    @Override
     public List<Product> findByName(String name)
     {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("name").regex(name, "imx"));
-        List<Product> products = mongoTemplate.find(query, Product.class);
+        Query query = new Query().addCriteria(Criteria.where("name").regex(name, "imx"));
 
-        return products;
+        return mongoTemplate.find(query, Product.class);
+    }
+
+    @Override
+    public void addProduct(Product product)
+    {
+        mongoTemplate.save(product);
+    }
+
+    @Override
+    public int maxId()
+    {
+        Query query = new Query().limit(1).with(Sort.by(Sort.Direction.DESC, "id"));
+        Optional<Product> product = Optional.ofNullable(mongoTemplate.findOne(query, Product.class));
+
+        return product.isPresent() ? product.get().getId() : -1;
     }
 
     private final MongoTemplate mongoTemplate;

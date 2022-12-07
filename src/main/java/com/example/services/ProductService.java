@@ -16,6 +16,7 @@ public class ProductService
     {
         this.productRepository = productRepository;
     }
+
     public List<Product> getAll()
     {
         return productRepository.findAll();
@@ -24,6 +25,20 @@ public class ProductService
     public List<Product> getByName(String name)
     {
         return productRepository.findByName(name);
+    }
+
+    public void addProduct(Product product)
+    {
+        product.setId(productRepository.maxId() + 1);
+        productRepository.addProduct(product);
+    }
+
+    public void addProducts(List<Product> products)
+    {
+        for(Product product : products)
+        {
+            addProduct(product);
+        }
     }
 
     private final ProductRepository productRepository;

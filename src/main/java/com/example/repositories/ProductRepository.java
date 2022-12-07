@@ -8,4 +8,6 @@ public interface ProductRepository
 {
     public List<Product> findAll();
     public List<Product> findByName(String name);
+    public void addProduct(Product product);
+    public int maxId();
 }
