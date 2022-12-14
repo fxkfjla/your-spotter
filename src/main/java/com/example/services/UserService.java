@@ -91,6 +91,11 @@ public class UserService implements UserDetailsService
     {
         userRepository.enableUser(id);
     }
+    public void changePassword(String newPassword, String email)
+    {
+        newPassword = passwordEncoder.encode(newPassword);
+        this.userRepository.updatePassword(newPassword, email);
+    }
 
     private final UserRepository userRepository;
     private final ConfirmationTokenService tokenService;

@@ -61,5 +61,15 @@ public class UserRepositoryImpl implements UserRepository
         mongoTemplate.save(user);
     }
 
+    @Override
+    public void updatePassword(String password, String email)
+    {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").is(email));
+        Update update = new Update();
+        update.set("password", password);
+        mongoTemplate.updateFirst(query, update, User.class);
+    }
+
     private final MongoTemplate mongoTemplate;
 }

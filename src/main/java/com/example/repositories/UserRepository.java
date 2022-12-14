@@ -12,4 +12,5 @@ public interface UserRepository
     public void enableUser(int id);
     public int maxId();
     public void save(User user);
+    public void updatePassword(String password, String email);
 }

@@ -32,7 +32,7 @@ public class RegistrationService
         if(!user.isEnabled())
         {
             String link = "http://localhost:8080/registration/confirm?token=" + token;
-            emailService.send(request.getEmail(), buildEmail(request.getEmail(), link));
+            emailService.send(request.getEmail(), "Confirm your email", buildEmail(request.getEmail(), link));
 
             return token;
         }

@@ -34,7 +34,7 @@ public class EmailService
     }
 
     @Async
-    public void send(String to, String mail)
+    public void send(String to, String subject, String mail)
     {
         try
         {
@@ -42,7 +42,7 @@ public class EmailService
             MimeMessageHelper helper = new MimeMessageHelper(msg, "utf-8");
             helper.setTo(to);
             helper.setText(mail, true);
-            helper.setSubject("Confirm your email");
+            helper.setSubject(subject);
             helper.setFrom("kacperlub@o2.pl");
             mailSender.send(msg);
         }
