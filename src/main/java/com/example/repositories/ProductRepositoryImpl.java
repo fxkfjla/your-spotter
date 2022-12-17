@@ -49,9 +49,12 @@ public class ProductRepositoryImpl implements ProductRepository
     public List<Product> findByCategoryName(String name)
     {
         Query query = new Query().addCriteria(Criteria.where("name").regex(name));
-        ProductCategory category = mongoTemplate.findOne(query, ProductCategory.class);
+        Optional<ProductCategory> category = Optional.ofNullable(mongoTemplate.findOne(query, ProductCategory.class));
 
-        return findByCategoryId(category.getId());
+        if(category.isEmpty())
+            throw new IllegalStateException("Category doesn't exist!");
+
+        return findByCategoryId(category.get().getId());
     }
 
     @Override
