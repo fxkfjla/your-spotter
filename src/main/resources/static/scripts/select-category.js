@@ -1,7 +1,8 @@
 window.addEventListener("load", ()=>
 {
-    const categoriesContainerr = document.querySelector("[categories-container]")
-    const categories = categoriesContainerr.querySelectorAll("[category]")
+    const categoriesContainer = document.querySelector("[categories-container]")
+    const categories = categoriesContainer.querySelectorAll("[category]")
+
     categories.forEach(category => 
     {
         category.addEventListener("click", ()=>
