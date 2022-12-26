@@ -1,0 +1,57 @@
+.product
+{
+  display: flex;
+}
+.product-left
+{
+  /* cursor: pointer;   */
+  display: flex;
+  margin: 1%;
+  margin-right: 10%;
+}
+.product-image
+{
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  align-self: center;
+}
+.product-right
+{
+  margin: 1%;
+}
+.product-name
+{
+  font-size: xx-large;
+  font-weight: bolder;
+  font-style: normal;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 5px;
+  clear: both;
+}
+.product-details
+{
+  font-size: medium;
+  font-weight: bold;
+  font-style: normal;
+  margin-top: 5%
+}
+.product-price
+{
+  margin-top: 50%;
+  font-size: larger;
+  font-weight: bold;
+  font-style: normal;
+  display: block;
+  margin-bottom: 5%
+}
+.buy-button
+{
+  border-radius: 12px;
+}
+.oNr-text
+{
+  margin-top: 2.5%;
+}
