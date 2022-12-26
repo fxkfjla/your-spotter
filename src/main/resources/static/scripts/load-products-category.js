@@ -5,7 +5,7 @@ var value = localStorage.getItem('category')
 
 if(value != null)
 {
-    fetch("/products/categoryName?name=" + value)
+    fetch("/products/categoryName?name=" + value + "&order=" + order + "&by=" + by)
     .then(res => res.json())
     .then(data =>
     {

@@ -2,10 +2,12 @@ var productTemplate = document.querySelector("[product-template]");
 var productsContainer = document.querySelector("[products-container]")
 
 var value = localStorage.getItem('search')
+var order = localStorage.getItem('order')
+var by = localStorage.getItem('by')
 
 if(value != null)
 {
-    fetch("/products/search?name=" + value)
+    fetch("/products/search?name=" + value + "&order=" + order + "&by=" + by)
     .then(res => res.json())
     .then(data =>
     {
