@@ -2,6 +2,20 @@
 {
 
 } */
+.sort-by-div
+{
+  display: flex;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.sort-by-text
+{
+  margin-right: 2%;
+}
+.sort-by-select
+{
+  border-radius: 0%;
+}
 .products-grid
 {
   display: grid;
