@@ -4,9 +4,11 @@ import com.example.models.Product;
 import com.example.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService
@@ -17,24 +19,36 @@ public class ProductService
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAll()
+    public List<Product> getAll(Optional<String> order, Optional<String> by)
     {
-        return productRepository.findAll();
+        Sort.Direction sortDir = parseSortString(order);
+        String sortBy = by.orElse("_id");
+
+        return productRepository.findAll(sortDir, sortBy);
     }
 
-    public List<Product> getByName(String name)
+    public List<Product> getByName(String name, Optional<String> order, Optional<String> by)
     {
-        return productRepository.findByName(name);
+        Sort.Direction sortDir = parseSortString(order);
+        String sortBy = by.orElse("_id");
+
+        return productRepository.findByName(name, sortDir, sortBy);
     }
 
-    public List<Product> getByCategoryId(Integer id)
+    public List<Product> getByCategoryId(Integer id, Optional<String> order, Optional<String> by)
     {
-        return productRepository.findByCategoryId(id);
+        Sort.Direction sortDir = parseSortString(order);
+        String sortBy = by.orElse("_id");
+
+        return productRepository.findByCategoryId(id, sortDir, sortBy);
     }
 
-    public List<Product> getByCategoryName(String name)
+    public List<Product> getByCategoryName(String name, Optional<String> order, Optional<String> by)
     {
-        return productRepository.findByCategoryName(name);
+        Sort.Direction sortDir = parseSortString(order);
+        String sortBy = by.orElse("_id");
+
+        return productRepository.findByCategoryName(name, sortDir, sortBy);
     }
 
     public void addProduct(Product product)
@@ -49,6 +63,16 @@ public class ProductService
         {
             addProduct(product);
         }
+    }
+
+    private Sort.Direction parseSortString(Optional<String> order)
+    {
+        Sort.Direction sortDir = Sort.DEFAULT_DIRECTION;
+
+        if(!order.isEmpty())
+            sortDir = order.get().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC;
+
+        return sortDir;
     }
 
     private final ProductRepository productRepository;

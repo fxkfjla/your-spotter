@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RequestMapping("/products")
@@ -27,27 +28,39 @@ public class ProductController
     }
 
     @GetMapping(path = "all")
-    public List<Product> getAll()
+    public List<Product> getAll(@RequestParam("order") Optional<String> order, @RequestParam("by") Optional<String> by)
     {
-        return productService.getAll();
+        return productService.getAll(order, by);
     }
 
     @GetMapping(path = "search")
-    public List<Product> getByName(@RequestParam("name") String name)
+    public List<Product> getByName
+    (
+        @RequestParam("name") String name, 
+        @RequestParam("order") Optional<String> order, @RequestParam("by") Optional<String> by
+    )
     {
-        return productService.getByName(name);
+        return productService.getByName(name, order, by);
     }
 
     @GetMapping(path = "categoryId")
-    public List<Product> getByCategoryId(@RequestParam("id") Integer id)
+    public List<Product> getByCategoryId
+    (
+        @RequestParam("id") Integer id,
+        @RequestParam("order") Optional<String> order, @RequestParam("by") Optional<String> by
+    )
     {
-        return productService.getByCategoryId(id);
+        return productService.getByCategoryId(id, order, by);
     }
 
     @GetMapping(path = "categoryName")
-    public List<Product> getByCategoryName(@RequestParam("name") String name)
+    public List<Product> getByCategoryName
+    (
+        @RequestParam("name") String name,
+        @RequestParam("order") Optional<String> order, @RequestParam("by") Optional<String> by
+    )
     {
-        return productService.getByCategoryName(name);
+        return productService.getByCategoryName(name, order, by);
     }
 
     @ResponseBody

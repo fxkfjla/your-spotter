@@ -23,30 +23,31 @@ public class ProductRepositoryImpl implements ProductRepository
     }
 
     @Override
-    public List<Product> findAll()
+    public List<Product> findAll(Sort.Direction order, String by)
     {
-        return mongoTemplate.findAll(Product.class);
-    }
-
-    @Override
-    public List<Product> findByName(String name)
-    {
-        Query query = new Query().addCriteria(Criteria.where("name").regex(name, "i"));
+        Query query = new Query().with(Sort.by(order, by));
 
         return mongoTemplate.find(query, Product.class);
     }
 
     @Override
-    public List<Product> findByCategoryId(Integer id)
+    public List<Product> findByName(String name, Sort.Direction order, String by)
     {
-        Criteria.where("category");
-        Query query = new Query().addCriteria(Criteria.where("category.$id").is(id));
+        Query query = new Query().addCriteria(Criteria.where("name").regex(name, "i")).with(Sort.by(order, by));
 
         return mongoTemplate.find(query, Product.class);
     }
 
     @Override
-    public List<Product> findByCategoryName(String name)
+    public List<Product> findByCategoryId(Integer id, Sort.Direction order, String by)
+    {
+        Query query = new Query().addCriteria(Criteria.where("category.$id").is(id)).with(Sort.by(order, by));
+
+        return mongoTemplate.find(query, Product.class);
+    }
+
+    @Override
+    public List<Product> findByCategoryName(String name, Sort.Direction order, String by)
     {
         Query query = new Query().addCriteria(Criteria.where("name").regex(name));
         Optional<ProductCategory> category = Optional.ofNullable(mongoTemplate.findOne(query, ProductCategory.class));
@@ -54,7 +55,7 @@ public class ProductRepositoryImpl implements ProductRepository
         if(category.isEmpty())
             throw new IllegalStateException("Category doesn't exist!");
 
-        return findByCategoryId(category.get().getId());
+        return findByCategoryId(category.get().getId(), order, by);
     }
 
     @Override
