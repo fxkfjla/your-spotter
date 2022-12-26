@@ -32,12 +32,14 @@
 }
 .product-image
 {
+  max-width: 100%;
+  max-height: 100%;
   aspect-ratio: 1 / 1;
   margin: 5%;
 }
 .product-name
 {
-  aspect-ratio: 1 / 0.20;
+  aspect-ratio: 1 / 0.25;
   margin-bottom: 10%;
   margin-left: 5%;
 }
