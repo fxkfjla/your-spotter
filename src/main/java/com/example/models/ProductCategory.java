@@ -14,10 +14,10 @@ import lombok.Setter;
 @Document("product_categories")
 public class ProductCategory
 {
-    public ProductCategory(String name, String image)
+    public ProductCategory(String name, String imageUrl)
     {
         this.name = name;
-        this.image = image;
+        this.imageUrl = imageUrl;
     }
 
     @Id
@@ -25,5 +25,5 @@ public class ProductCategory
     @Field
     private String name;
     @Field
-    private String image;
+    private String imageUrl;
 }

@@ -17,11 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product
 {
-    public Product(String name, Integer amount, Float price, ProductCategory category)
+    public Product(String name, Integer amount, Float price, String imageUrl, ProductCategory category)
     {
         this.name = name;
         this.amount = amount;
         this.price = price;
+        this.imageUrl = imageUrl;
         this.category = category;
     }
 
@@ -33,6 +34,8 @@ public class Product
     private Integer amount;
     @Field
     private Float price;
+    @Field
+    private String imageUrl;
     @Field
     @DBRef
     private ProductCategory category;
