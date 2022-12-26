@@ -1,5 +1,5 @@
-const categoryTemplate = document.querySelector("[category-template]");
-const categoriesContainer = document.querySelector("[categories-container]")
+var categoryTemplate = document.querySelector("[category-template]");
+var categoriesContainer = document.querySelector("[categories-container]")
 
 fetch("products/categories/all")
 .then(res => res.json())
@@ -13,8 +13,8 @@ fetch("products/categories/all")
         const name = template.querySelector("[category-name]")
 
         template.href = "categories/" + category.name + ".html"
+        image.src = category.imageUrl
         name.textContent = category.name
-        // image.textContent = category.image
 
         categoriesContainer.append(template)
     }); 
