@@ -31,7 +31,7 @@ public class ProductRepositoryImpl implements ProductRepository
     @Override
     public List<Product> findByName(String name)
     {
-        Query query = new Query().addCriteria(Criteria.where("name").regex(name, "imx"));
+        Query query = new Query().addCriteria(Criteria.where("name").regex(name, "i"));
 
         return mongoTemplate.find(query, Product.class);
     }
