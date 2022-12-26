@@ -18,7 +18,7 @@ if(value != null)
             const amount = template.querySelector("[product-amount]")
             const price = template.querySelector("[product-price]")
 
-            // image.textContent = product.image
+            image.src = product.imageUrl
             name.textContent = product.name
             // amount.textContent = product.amount
             price.textContent = product.price + " PLN"

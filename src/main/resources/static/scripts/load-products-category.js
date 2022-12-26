@@ -15,12 +15,10 @@ if(value != null)
 
             const image = template.querySelector("[product-image]")
             const name = template.querySelector("[product-name]")
-            const amount = template.querySelector("[product-amount]")
             const price = template.querySelector("[product-price]")
 
-            // image.textContent = product.image
+            image.src = product.imageUrl
             name.textContent = product.name
-            // amount.textContent = product.amount
             price.textContent = product.price + " PLN"
 
             productsContainer.append(template)
