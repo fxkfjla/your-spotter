@@ -21,6 +21,7 @@
     <script src = "scripts/load-products.js" defer></script>
     <script src = "scripts/load-products-category.js" defer></script>
     <script src = "scripts/select-product.js" defer></script>
+    <script src = "scripts/sort-products.js" defer></script>
   </head>
 
   <body>
@@ -28,9 +29,16 @@
       <div data-include = "header"></div>
 
       <div class = "content">
-        <div class = "filters"></div>
-        <div class = "products-grid" products-container></div>
+        <div class = sort-by-div>
+          <h3 class = "sort-by-text">Sort by:</h3>
+          <select class = "sort-by-select" sort-select>
+            <option value = "most-popular" sort-popular>Most Popular</option>
+            <option value = "price-asc" sort-price-asc>Price Ascending</option>
+            <option value = "price-desc" sort-price-desc>Price Descending</option>
+          </select>
+        </div>
 
+        <div class = "products-grid" products-container></div>
       </div>
 
     </div>
