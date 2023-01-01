@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@1&display=swap');
+* {
+  font-size: 25px;
+  font-family: "Prompt", sans-serif;
+}
+.center {
+  text-align: center;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: rgb(236, 240, 240);
+}
+button {
+  font-size: 1rem;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background: rgb(12, 12, 12);
+ }
+button:hover {
+  background: rgba(23, 25, 26, 0.877);
+}
