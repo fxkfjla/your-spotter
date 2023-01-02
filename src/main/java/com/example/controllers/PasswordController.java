@@ -14,18 +14,11 @@ public class PasswordController {
 
     private final PasswordService service;
 
-    @PostMapping(path = "send-otp")
-    public void sendOTP(@RequestParam("email") String email)
+    @PostMapping(path = "send-email")
+    public void sendEmail(@RequestParam("email") String email)
     {
-        this.service.sendOTP(email);
+        this.service.sendEmail(email);
     }
-
-//    @PostMapping(path = "verify-otp")
-//    public void verifyOTP(@RequestParam("otp") int otp)
-//    {
-//        if(otp == this.service.getOtp())
-//            this.repository.findByEmail(this.service.getEmail());
-//    }
 
     @PostMapping(path = "change-password")
     public void changePassword(@RequestParam("newPassword") String newPassword)
