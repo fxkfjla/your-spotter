@@ -24,4 +24,7 @@ public class Comment
     @Field
     @DBRef
     private Product product;
+    @Field
+    @DBRef
+    private User user;
 }
