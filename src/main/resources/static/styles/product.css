@@ -55,3 +55,23 @@
 {
   margin-top: 2.5%;
 }
+.post-button
+{
+  display: block;
+  padding-right: 3%;
+  padding-left: 3%;
+  margin-bottom: 50px;
+}
+.comments-header{
+  margin-bottom: 50px;
+}
+.text {
+  line-height: 1.3em;
+  font-size: 1em;
+  clear: both;
+}
+.product-opinion {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+  padding-left: 40px;
+}
