@@ -39,6 +39,19 @@ public class UserService implements UserDetailsService
         return user.get();
     }
 
+    public User getById(int id)
+    {
+        Optional<User> user = userRepository.findById(id);
+
+        if(!user.isPresent())
+        {
+            // TODO: Handle exception
+            throw new IllegalStateException("user not found");
+        }
+
+        return user.get();
+    }
+
     public boolean compare(String email, String password)
     {
         Optional<User> user = userRepository.findByEmail(email);

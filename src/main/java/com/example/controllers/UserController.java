@@ -35,5 +35,11 @@ public class UserController
         return userService.compare(email, password);
     }
 
+    @GetMapping
+    public User getById(@RequestParam("id") int id)
+    {
+        return userService.getById(id);
+    }
+
     private final UserService userService;
 }
