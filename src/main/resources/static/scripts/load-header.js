@@ -5,3 +5,5 @@ $(function () {
       $(this).load(file)
     })
   })
+
+let userId = -1
