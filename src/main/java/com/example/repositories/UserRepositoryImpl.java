@@ -31,8 +31,15 @@ public class UserRepositoryImpl implements UserRepository
     @Override
     public Optional<User> findByEmail(String email)
     {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("email").regex(email));
+        Query query = new Query().addCriteria(Criteria.where("email").regex(email));
+
+        return Optional.ofNullable(mongoTemplate.findOne(query, User.class));
+    }
+
+    @Override
+    public Optional<User> findById(int id)
+    {
+        Query query = new Query().addCriteria(Criteria.where("_id").is(id));
 
         return Optional.ofNullable(mongoTemplate.findOne(query, User.class));
     }
@@ -64,10 +71,8 @@ public class UserRepositoryImpl implements UserRepository
     @Override
     public void updatePassword(String password, String email)
     {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("email").is(email));
-        Update update = new Update();
-        update.set("password", password);
+        Query query = new Query().addCriteria(Criteria.where("email").is(email));
+        Update update = new Update().set("password", password);
         mongoTemplate.updateFirst(query, update, User.class);
     }
 
