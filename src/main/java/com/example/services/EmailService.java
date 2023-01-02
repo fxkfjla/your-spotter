@@ -43,7 +43,7 @@ public class EmailService
             helper.setTo(to);
             helper.setText(mail, true);
             helper.setSubject(subject);
-            helper.setFrom("kacperlub@o2.pl");
+            helper.setFrom("yourspotters@gmail.com");
             mailSender.send(msg);
         }
         catch(MessagingException e)
@@ -51,7 +51,6 @@ public class EmailService
             logger.error("Failed to send email.", e);
             throw new IllegalStateException("Failed to send email.");
         }
-
     }
 
     private final JavaMailSender mailSender;    
