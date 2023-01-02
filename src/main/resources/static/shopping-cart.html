@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <Title>Your cart</Title>
+
+    <link rel = "stylesheet" href = "/styles/page-layout.css">
+    <link rel = "stylesheet" href = "/styles/shopping-cart.css">
+
+    <script src = "https://code.jquery.com/jquery-1.7.1.min.js" defer></script>
+    <script src = "scripts/load-header.js" defer></script>
+    <script src = "scripts/load-to-cart.js" defer></script>
+  </head>
+
+  <body>
+    <div class = "wrapper">
+      <div data-include = "header"></div>
+      
+      <div class = "content">
+        <h1 class = "your-cart-text">YOUR CART</h1>
+        
+        <div class = "summary">
+          <div class = "summary-text">SUMMARY:</div>
+          <div class = "summary-price">TOTAL: 0 PLN</div>
+          <button class = "checkout-button">CHECKOUT</button>
+        </div>
+
+        <div class = "overview">
+          <table class="product-cart"><tbody></tbody></table>
+          <button class = "clear-button">CLEAR CART</button>
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+</html>
