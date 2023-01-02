@@ -41,13 +41,22 @@ if(value != null)
       });
 
       var postButton = document.querySelector(".post-button")
-      
+      user = null
+
       postButton.addEventListener('click', input => 
       {
         input.preventDefault();
       
         comment = document.getElementById('comment').value;
         
+        // fetch("/users/lookup?id=" + userId).then(res => res.json()).then(data =>
+        // {
+        //   user = data
+        //   console.log(data)
+        // })
+
+        console.log(user.id)
+
         fetch("comments/addComment", 
         {
           method: 'POST',
@@ -56,7 +65,7 @@ if(value != null)
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ "comment": comment, "product": result })
+          body: JSON.stringify({ "comment": comment, "product": result, "user": user })
         }).then(() => location.href = "/product.html");
       });
 
@@ -70,11 +79,22 @@ if(value != null)
         {
           var commentDiv = document.createElement('div');
           commentDiv.classList.add('product-opinion');
-          commentDiv.innerHTML = "<div class='text'>" + comment.comment + "</div>";
+          commentDiv.innerHTML = "<span>" + currentData() + "</span> by<div class='text'>" + comment.comment + "</div>";
 
           section.appendChild(commentDiv);
         }) 
       })
     }); 
   })
+}
+
+function currentData()
+{
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  return today
 }
