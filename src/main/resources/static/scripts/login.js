@@ -21,6 +21,7 @@ form.addEventListener('click', input =>
                 {
                     if(JSON.parse(isValid)) 
                     {
+                        userId = data.id
                         location.href = "/index.html"
                     }
                 })
