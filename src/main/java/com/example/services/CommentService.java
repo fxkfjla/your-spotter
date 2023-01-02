@@ -23,7 +23,8 @@ public class CommentService
 
     public void addComment(Comment comment)
     {
-        commentRepository.addComment(comment);
+        if(!comment.getComment().isEmpty())
+            commentRepository.addComment(comment);
     }
 
     private final CommentRepository commentRepository;
