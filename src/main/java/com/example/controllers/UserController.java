@@ -43,6 +43,12 @@ public class UserController
         return userService.compare(email, password);
     }
 
+    @GetMapping(path = "getById")
+    public User getById(@RequestParam("id") int id)
+    {
+        return userService.getById(id);
+    }
+
     @PostMapping("login")
     public ResponseEntity<Void> login(@RequestParam("email") String email, HttpServletResponse response)
     {
