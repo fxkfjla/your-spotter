@@ -67,7 +67,7 @@ async function main()
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ "comment": comment, "product": tmp, "userId": user.id })
+              body: JSON.stringify({ "comment": comment, "product": tmp, "userEmail": user.email })
             }).then(() => location.href = "/product.html");
           }
         });
@@ -83,7 +83,7 @@ async function main()
         {
           var commentDiv = document.createElement('div');
           commentDiv.classList.add('product-opinion');
-          commentDiv.innerHTML = "<span>" + currentData() + "</span> by <strong>" + user.email + "</strong><div class='text'>" + comment.comment + "</div>";
+          commentDiv.innerHTML = "<span>" + currentData() + "</span> by <strong>" + comment.userEmail + "</strong><div class='text'>" + comment.comment + "</div>";
 
           section.appendChild(commentDiv);
         })
