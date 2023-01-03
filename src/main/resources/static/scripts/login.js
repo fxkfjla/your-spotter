@@ -1,7 +1,7 @@
 async function main()
 {
     const isLoggedIn = await loggedIn()
-    if(isLoggedIn) location.href = "/loged.html"
+    if(isLoggedIn) location.href = "/logged.html"
 
     const form = document.getElementById('form')
 
