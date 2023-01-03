@@ -10,6 +10,7 @@ public interface UserRepository
     public List<User> findAll();
     public Optional<User> findByEmail(String email);
     public Optional<User> findById(int id);
+    public Optional<User> findBySessionId(String id);
     public void enableUser(int id);
     public int maxId();
     public void save(User user);

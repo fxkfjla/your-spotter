@@ -45,6 +45,14 @@ public class UserRepositoryImpl implements UserRepository
     }
 
     @Override
+    public Optional<User> findBySessionId(String id)
+    {
+        Query query = new Query().addCriteria(Criteria.where("sessionId").is(id));
+
+        return Optional.ofNullable(mongoTemplate.findOne(query, User.class));
+    }
+
+    @Override
     public void enableUser(int id)
     {
         Query query = new Query().addCriteria(Criteria.where("_id").is(id));
