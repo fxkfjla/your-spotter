@@ -1,31 +1,58 @@
-const form = document.getElementById('form')
-
-form.addEventListener('click', input =>
+async function main()
 {
-    input.preventDefault()
+    const isLoggedIn = await loggedIn()
+    if(isLoggedIn) location.href = "/loged.html"
 
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
+    const form = document.getElementById('form')
 
-    fetch("users/lookup?email=" + email)
-    .then(res => res.json())
-    .then(data =>
+    form.addEventListener('click', input =>
     {
-        if(data.email == email)
+        input.preventDefault()
+
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+
+        fetch("/users/lookup?email=" + email)
+        .then(res => res.json())
+        .then(data =>
         {
-            if(data.enabled)
+            if(data.email == email)
             {
-                fetch("users/lookup/compare?email=" + email + "&password=" + password)
-                .then(response => response.text())
-                .then(isValid => 
+                if(data.enabled)
                 {
-                    if(JSON.parse(isValid)) 
+                    fetch("users/lookup/compare?email=" + email + "&password=" + password)
+                    .then(response => response.text())
+                    .then(isValid => 
                     {
-                        userId = data.id
-                        location.href = "/index.html"
-                    }
-                })
+                        if(JSON.parse(isValid)) 
+                        {
+                            fetch("/users/login?email=" + email, 
+                            {
+                                method: 'POST',
+                                credentials: 'include'
+                            }).then(response => {
+                            if (response.ok)
+                            {
+                                // The request was successful
+                                console.log("Request successful");
+                                
+                                // Try to retrieve the SESSION_ID cookie
+                                const sessionId = getCookie("SESSION_ID");
+                                if (sessionId != null) {
+                                    console.log("SESSION_ID cookie: " + sessionId);
+                                } else {
+                                    console.log("SESSION_ID cookie not found");
+                                }
+                            }
+                            else
+                                console.log("Request failed");
+                            }).then(() => location.href = "/")
+                        }
+                    })
+                }
             }
-        }
+        })
     })
-})
+}
+
+main()
