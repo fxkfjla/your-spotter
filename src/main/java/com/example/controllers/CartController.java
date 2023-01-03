@@ -27,6 +27,12 @@ public class CartController
         return cartService.getCartByUserId(userId, request);
     }
 
+    @GetMapping("checkout")
+    public void checkout(@RequestParam("userId") int userId, HttpServletRequest request)
+    {
+        cartService.checkout(userId, request);
+    }
+
     @PostMapping("addProduct")
     public void addProduct(@RequestParam("userId") int userId, @RequestBody Product product, HttpServletRequest request)
     {
