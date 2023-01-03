@@ -83,4 +83,8 @@ public class User implements UserDetails
     private Boolean locked = false;
     @Field
     private Boolean enabled = false;
+    @Field
+    private String sessionId;
+    @Field
+    private int loyalityPoints;
 }
