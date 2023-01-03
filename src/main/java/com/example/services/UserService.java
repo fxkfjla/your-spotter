@@ -91,10 +91,29 @@ public class UserService implements UserDetailsService
     {
         userRepository.enableUser(id);
     }
+
+    public User findBySessionId(String sessionId)
+    {
+        Optional<User> user = userRepository.findBySessionId(sessionId);
+
+        if(!user.isPresent())
+        {
+            // TODO: handle exception
+            throw new IllegalStateException("User with " + sessionId + " session id not found");
+        }
+
+        return user.get();
+    }
+
     public void changePassword(String newPassword, String email)
     {
         newPassword = passwordEncoder.encode(newPassword);
         this.userRepository.updatePassword(newPassword, email);
+    }
+    
+    public void save(User user)
+    {
+        userRepository.save(user);
     }
 
     private final UserRepository userRepository;
