@@ -13,11 +13,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 public class Comment
 {
-    public Comment(String comment, Product product, int userId)
+    public Comment(String comment, Product product, String userEmail)
     {
         this.comment = comment;
         this.product = product;
-        this.userId = userId;
+        this.userEmail = userEmail;
     }
 
     @Field
@@ -28,6 +28,5 @@ public class Comment
     private Product product;
 
     @Field
-//    @DBRef(lazy = false)
-    private int userId;
+    private String userEmail;
 }
