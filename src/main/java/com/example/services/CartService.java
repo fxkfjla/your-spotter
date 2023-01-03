@@ -1,5 +1,7 @@
 package com.example.services;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.models.Cart;
 import com.example.models.Product;
+import com.example.models.User;
 import com.example.repositories.CartRepository;
 import com.example.repositories.UserRepository;
+import com.example.utility.LoyalityPoints;
 
 import lombok.AllArgsConstructor;
 
@@ -34,20 +38,37 @@ public class CartService
       return cart;
    }
 
+   public void checkout(int userId, HttpServletRequest request)
+   {
+      Cart cart = getCartByUserId(userId, request);
+      Optional<User> user = userRepository.findById(userId);
+
+      if(cart != null)
+      {
+         if(user.isPresent())
+         {
+            User _user = user.get();
+
+            int earnedLoyalityPoints = LoyalityPoints.calculate(cart.getTotalPrice());
+            _user.setLoyalityPoints(_user.getLoyalityPoints() + earnedLoyalityPoints);
+
+            userRepository.save(_user);
+         }
+          
+         cartRepository.remove(cart);
+      }
+   }
+
    public void addProduct(int userId, Product product, HttpServletRequest request)
    {
       Cart cart = getCartByUserId(userId, request);
 
       if(cart == null)
       {
-         if(userRepository.findById(userId).isPresent())
-            cart = new Cart(userId);
-         else
-         {
-            cart = new Cart();
+         if(!userRepository.findById(userId).isPresent())
             request.getSession().setAttribute("cartId", cartRepository.nextId());
-         }
 
+         cart = new Cart(userId);
          cart.setId(cartRepository.nextId());
       }
 
