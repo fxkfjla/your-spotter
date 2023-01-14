@@ -18,13 +18,15 @@ public class PasswordService {
     {
         this.email = email;
         String subject = "Password notification";
-        String message = "http://localhost:8080/change-password.html";
+        String link = "http://localhost:8080/change-password.html";
+        String message = "<a href=\"" + link + "\">Change password</a>";
         this.emailService.send(email, subject, message);
     }
 
     public void changePassword(String newPassword, String email)
     {
         this.userService.changePassword(newPassword, email);
+        this.email = "";
     }
 
     public String getEmail() {return email;}
