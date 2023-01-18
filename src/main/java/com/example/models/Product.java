@@ -17,6 +17,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product
 {
+    /**
+     * 
+     * @param name of the product
+     * @param amount
+     * @param price
+     * @param imageUrl url visual representation of a product 
+     * @param category 
+     */
     public Product(String name, Integer amount, Float price, String imageUrl, ProductCategory category)
     {
         this.name = name;
@@ -38,5 +46,6 @@ public class Product
     private String imageUrl;
     @Field
     @DBRef
+    // every product refrences category that it belongs to
     private ProductCategory category;
 }

@@ -19,12 +19,19 @@ import java.util.List;
 @RestController
 public class ProductCategoryController
 {
+    /**
+     * @return list of all product categories
+     */
     @GetMapping(path = "all")
     public List<ProductCategory> getAll()
     {
         return categoryService.getAll();
     }
 
+    /**
+     * adds new category to database
+     * @param category
+     */
     @ResponseBody
     @PostMapping(path = "addOne")
     public void addProduct(@RequestBody ProductCategory category)
@@ -32,6 +39,10 @@ public class ProductCategoryController
         categoryService.addCategory(category);
     }
 
+    /**
+     * adds new categories to database
+     * @param categories
+     */
     @ResponseBody
     @PostMapping(path = "addMany")
     public void addProducts(@RequestBody List<ProductCategory> categories)

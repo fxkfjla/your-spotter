@@ -22,6 +22,12 @@ import java.util.Collections;
 @Document("users")
 public class User implements UserDetails
 {
+    /**
+     * 
+     * @param email
+     * @param password
+     * @param role USER / ADMIN
+     */
     public User(String email, String password, UserRole role)
     {
         this.email = email;
@@ -29,6 +35,9 @@ public class User implements UserDetails
         this.role = role;
     }
 
+    /**
+     * return user roles
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
@@ -80,10 +89,13 @@ public class User implements UserDetails
     @Field
     private UserRole role;
     @Field
+    // flag to check if user account is locked
     private Boolean locked = false;
     @Field
+    // flag to check if user confirmed email
     private Boolean enabled = false;
     @Field
+    // id session that is assigned when user logs in
     private String sessionId;
     @Field
     private int loyalityPoints;

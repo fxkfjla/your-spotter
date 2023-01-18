@@ -13,6 +13,13 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 public class Comment
 {
+    /**
+     * 
+     * @param comment actual comment content
+     * @param product reference to product
+     * @param userEmail
+     * @param data time the comment is posted
+     */
     public Comment(String comment, Product product, String userEmail, String data)
     {
         this.comment = comment;
@@ -26,6 +33,7 @@ public class Comment
 
     @Field
     @DBRef
+    // every comment refrences product that it belongs to 
     private Product product;
 
     @Field

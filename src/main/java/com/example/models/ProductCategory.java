@@ -14,6 +14,11 @@ import lombok.Setter;
 @Document("product_categories")
 public class ProductCategory
 {
+    /**
+     * 
+     * @param name 
+     * @param imageUrl url to visual representation of a category
+     */
     public ProductCategory(String name, String imageUrl)
     {
         this.name = name;

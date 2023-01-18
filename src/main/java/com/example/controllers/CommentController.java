@@ -18,12 +18,20 @@ public class CommentController
         this.commentService = commentService;
     }
 
+    /**
+     * @param id product id
+     * @return list of comments of corresponding product id
+     */
     @GetMapping(path = "productId")
     public List<Comment> getByProductId(@RequestParam("id") int id)
     {
         return this.commentService.getByProductId(id);
     }
 
+    /**
+     * adds new comment to database
+     * @param comment
+     */
     @ResponseBody
     @PostMapping(path = "addComment")
     public void addComment(@RequestBody Comment comment)

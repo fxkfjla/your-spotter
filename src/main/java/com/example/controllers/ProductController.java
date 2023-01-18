@@ -27,12 +27,23 @@ public class ProductController
         this.productService = productService;
     }
 
+    /**
+     * @param order ascending / descending
+     * @param by attribute to sort by
+     * @return list of all products
+     */
     @GetMapping(path = "all")
     public List<Product> getAll(@RequestParam("order") Optional<String> order, @RequestParam("by") Optional<String> by)
     {
         return productService.getAll(order, by);
     }
 
+    /**
+     * @param name product name
+     * @param order ascending / descending
+     * @param by attribute to sort by
+     * @return list of products that fit name
+     */
     @GetMapping(path = "search")
     public List<Product> getByName
     (
@@ -43,6 +54,13 @@ public class ProductController
         return productService.getByName(name, order, by);
     }
 
+    /**
+     * 
+     * @param id category id
+     * @param order ascending / descending
+     * @param by attribute to sort by
+     * @return list of products that fit category id
+     */
     @GetMapping(path = "categoryId")
     public List<Product> getByCategoryId
     (
@@ -53,6 +71,12 @@ public class ProductController
         return productService.getByCategoryId(id, order, by);
     }
 
+    /**
+     * @param name category name
+     * @param order ascending / descending
+     * @param by attribute to sort by
+     * @return list of products that fit category name
+     */
     @GetMapping(path = "categoryName")
     public List<Product> getByCategoryName
     (
@@ -63,6 +87,10 @@ public class ProductController
         return productService.getByCategoryName(name, order, by);
     }
 
+    /**
+     * adds new product to database
+     * @param product
+     */
     @ResponseBody
     @PostMapping(path = "addOne")
     public void addProduct(@RequestBody Product product)
@@ -70,6 +98,10 @@ public class ProductController
         productService.addProduct(product);
     }
 
+    /**
+     * adds new products to database
+     * @param product
+     */
     @ResponseBody
     @PostMapping(path = "addMany")
     public void addProducts(@RequestBody List<Product> products)

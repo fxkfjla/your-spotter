@@ -14,12 +14,20 @@ public class PasswordController {
 
     private final PasswordService service;
 
+    /**
+     * sends email to subject that corresponds to passed mail address
+     * @param email subject mail address
+     */
     @PostMapping(path = "send-email")
     public void sendEmail(@RequestParam("email") String email)
     {
         this.service.sendEmail(email);
     }
 
+    /**
+     * changes password to new based on remembered email
+     * @param newPassword 
+     */
     @PostMapping(path = "change-password")
     public void changePassword(@RequestParam("newPassword") String newPassword)
     {

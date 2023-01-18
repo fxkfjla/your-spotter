@@ -17,6 +17,9 @@ import java.util.List;
 @Setter
 public class Cart
 {
+    /**
+     * create cart for not logged in user
+     */
     public Cart()
     {
         userId = null;
@@ -24,6 +27,10 @@ public class Cart
         totalPrice = 0;
     }
 
+    /**
+     * create cart for logged user
+     * @param userId id for which cart will be created
+     */
     public Cart(int userId)
     {
         this.userId = userId;
@@ -31,12 +38,20 @@ public class Cart
         totalPrice = 0;
     }
 
+    /**
+     * 
+     * @param product to be added to cart
+     */
     public void addProduct(Product product)
     {
         products.add(product);
         totalPrice += product.getPrice();
     }
 
+    /**
+     * 
+     * @param product to be removed from cart
+     */
     public void removeProduct(Product product)
     {
         for(Product _product : products)
@@ -50,6 +65,9 @@ public class Cart
         }
     }
 
+    /**
+     * clears cart
+     */
     public void clear()
     {
         products.clear();

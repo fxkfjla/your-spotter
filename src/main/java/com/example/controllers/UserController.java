@@ -25,30 +25,53 @@ import lombok.AllArgsConstructor;
 @RestController
 public class UserController
 {
+    /**
+     * @return list of all users
+     */
     @GetMapping(path = "all")
     public List<User> getAll()
     {
         return userService.getAll();
     }
 
+    /**
+     * @param email user email
+     * @return user that fits user email
+     */
     @GetMapping(path = "lookup")
     public User getByEmail(@RequestParam("email") String email)
     {
         return userService.getByEmail(email);
     }
 
+    /**
+     * compares credentials
+     * @param email entered user email
+     * @param password entered password
+     * @return true or false based on correctness of credentials
+     */
     @GetMapping(path = "lookup/compare")
     public boolean compare(@RequestParam("email") String email, @RequestParam("password") String password)
     {
         return userService.compare(email, password);
     }
 
+    /**
+     * @param id user id
+     * @return user that fits passed id
+     */
     @GetMapping(path = "getById")
     public User getById(@RequestParam("id") int id)
     {
         return userService.getById(id);
     }
 
+    /**
+     * logs the user 
+     * @param email user email
+     * @param request http servlet request add cookie, used later to find cart or user based on session id
+     * @return response that notifies if logging was successful
+     */
     @PostMapping("login")
     public ResponseEntity<Void> login(@RequestParam("email") String email, HttpServletResponse response)
     {
@@ -69,6 +92,11 @@ public class UserController
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
     }
 
+    /**
+     * logs out the user
+     * @param sessionId session id of user
+     * @param response http servlet request add cookie, used later to find cart or user based on session id
+     */
     @PostMapping("logout")
     public void logout(@RequestParam("sessionId") String sessionId, HttpServletResponse response)
     {
@@ -87,6 +115,11 @@ public class UserController
         response.addCookie(cookie);
     }
 
+    /**
+     * checks if session is valid
+     * @param sessionId session id of user
+     * @return response that notifies if session expired
+     */
     @PostMapping("/checkSession")
     public ResponseEntity<Void> checkSession(@RequestParam("sessionId") String sessionId)
     {
@@ -103,6 +136,10 @@ public class UserController
         }
     }
 
+    /**
+     * @param sessionId session id of user
+     * @return user that fits session id
+     */
     @GetMapping("getBySession")
     public User getBySessionId(@RequestParam("id") String sessionId)
     {

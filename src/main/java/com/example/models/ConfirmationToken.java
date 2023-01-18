@@ -17,6 +17,13 @@ import java.time.LocalDateTime;
 @Document("confirmation_tokens")
 public class ConfirmationToken
 {
+    /**
+     * 
+     * @param token unique UUID string
+     * @param createdAt time the token is created
+     * @param expiresAt time the token expires
+     * @param user for whom the token is created
+     */
     public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, User user)
     {
         this.token = token;
